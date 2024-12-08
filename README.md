@@ -6,6 +6,8 @@
 
     -   Next big step would be to determine what data must be kept within the parent
 
+    ![alt text](image-1.png)
+
         -   All todos, input todo, filter info
 
     -   Prop validation and default props for button component
@@ -17,3 +19,7 @@
     -   window.todoId for keying the todos
 
     -   structuredclone for deep copying
+
+    -   [function references versus function calls](https://hashnode.com/draft/66a5e0c3229c6ced00fd4c0a)
+
+    -   https://x.com/PranjalUncodes/status/1865736977544315366

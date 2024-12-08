@@ -20,10 +20,44 @@ export default function ToDo() {
 
 		newTodo.id = window.todoId++;
 		newTodo.todo = todoToAdd;
+		newTodo.editMode = false; // false editable by default
 
 		setTodoToAdd("");
 		setTodos([newTodo, ...oldTodos]);
-		console.log(JSON.stringify(todos));
+		// console.log(JSON.stringify(todos));
+	}
+
+	function handleDeleteTodo(id) {
+		const filteredTodos = todos.filter((todo) => todo.id !== id);
+		setTodos(filteredTodos);
+	}
+
+	function handleEditTodo(id) {
+		const editedTodos = todos.map((todo) => {
+			todo.editMode = id === todo.id;
+			return { ...todo };
+		});
+		setTodos(editedTodos);
+	}
+
+	function handleEditCancel(id) {
+		const editedTodos = todos.map((todo) => {
+			if (id === todo.id) {
+				todo.editMode = false;
+			}
+			return { ...todo };
+		});
+		setTodos(editedTodos);
+	}
+
+	function handleEditSave(id) {
+		// const editedTodos = todos.map((todo) => {
+		// 	if (id === todo.id) {
+		// 		todo.editMode = false;
+		// 	}
+		// 	return { ...todo };
+		// });
+		// setTodos(editedTodos);
 	}
 
 	return (
@@ -37,7 +71,13 @@ export default function ToDo() {
 				onClick={handleAddTodo}
 			/>
 			{/* {todoToAdd} */}
-			<ToDos todos={todos}></ToDos>
+			<ToDos
+				todos={todos}
+				onDelete={handleDeleteTodo}
+				onEdit={handleEditTodo}
+				onEditCancel={handleEditCancel}
+				onEditSave={handleEditSave}
+			></ToDos>
 		</>
 	);
 }
