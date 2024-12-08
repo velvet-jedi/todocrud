@@ -5,10 +5,17 @@ import { useState } from "react";
 import ToDos from "./Todos/ToDos";
 
 window.todoId = 1000;
+const TODO_KEY = "my_todos";
 
 export default function ToDo() {
 	const [todos, setTodos] = useState([]); // whole
 	const [todoToAdd, setTodoToAdd] = useState("");
+
+	function persistTodos(data) {
+		const strTodos = JSON.stringify(data);
+		localStorage.setItem(TODO_KEY, strTodos);
+		setTodos(data);
+	}
 
 	function handleTodoChange(value) {
 		setTodoToAdd(value);
@@ -23,38 +30,40 @@ export default function ToDo() {
 		newTodo.editMode = false; // false editable by default
 
 		setTodoToAdd("");
-		setTodos([newTodo, ...oldTodos]);
-		// console.log(JSON.stringify(todos));
+		const newTodos = [newTodo, ...oldTodos];
+
+		persistTodos(newTodos);
 	}
 
 	function handleDeleteTodo(id) {
-		const filteredTodos = todos.filter((todo) => todo.id !== id);
-		setTodos(filteredTodos);
+		const newTodos = todos.filter((todo) => todo.id !== id);
+
+		persistTodos(newTodos);
 	}
 
 	function handleEditTodo(id) {
-		const editedTodos = todos.map((todo) => {
+		const newTodos = todos.map((todo) => {
 			todo.editMode = id === todo.id;
 			return { ...todo };
 		});
-		setTodos(editedTodos);
+		persistTodos(newTodos);
 	}
 
 	function handleEditCancel(id) {
-		const editedTodos = todos.map((todo) => {
+		const newTodos = todos.map((todo) => {
 			if (id === todo.id) {
 				todo.editMode = false;
 			}
 			return { ...todo };
 		});
-		setTodos(editedTodos);
+		persistTodos(newTodos);
 	}
 
 	function handleEditSave(index, newValue) {
 		const newTodos = structuredClone(todos);
 		newTodos[index].todo = newValue;
 		newTodos[index].editMode = false;
-		setTodos(newTodos);
+		persistTodos(newTodos);
 	}
 
 	return (
