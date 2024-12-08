@@ -2,6 +2,7 @@ import "../App.css";
 import InputText from "./InputText/InputText";
 import Button from "./Button/Button";
 import { useState } from "react";
+import ToDos from "./Todos/ToDos";
 
 window.todoId = 1000;
 
@@ -35,7 +36,8 @@ export default function ToDo() {
 				label={"Add todo"}
 				onClick={handleAddTodo}
 			/>
-			{todoToAdd}
+			{/* {todoToAdd} */}
+			<ToDos todos={todos}></ToDos>
 		</>
 	);
 }
