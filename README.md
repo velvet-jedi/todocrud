@@ -13,3 +13,7 @@
 
     -   handleChange of the input comp, inside which I extract the value from the event object and passed it to the onChange callback so that any component usnig the inputText component that doesnt have to do the same again and again (ex-> If I use this input component 10 times in different places then I would have to 10 times write e.target.value) COMPONENT ABSTRACTION to reduce repetitive code and improve reusability.
         Any parent component using InputText doesn't need to repeat the e.target.value extraction logic every time it uses this input.
+
+    -   window.todoId for keying the todos
+
+    -   structuredclone for deep copying
