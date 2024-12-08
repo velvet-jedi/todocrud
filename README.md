@@ -6,3 +6,5 @@
 
     -   Next big step would be to determine what data must be kept within the parent
         -   All todos, input todo, filter info
+
+-   Prop validation and default props
