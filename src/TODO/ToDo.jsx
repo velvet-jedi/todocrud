@@ -14,7 +14,7 @@ export default function ToDo() {
 	function loadInit(){
 		const todoStrings = localStorage.getItem(TODO_KEY)
 		const todoArr = JSON.parse(todoStrings)
-
+		window.todoId += todoArr.length;
 		return todoArr
 	}
 
