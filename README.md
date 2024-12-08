@@ -35,3 +35,5 @@
     Relying on the current state value right after updating can result in using stale (old) information, especially during rapid updates or asynchronous operations.
     The Solution
     Always retrieve the most recent data directly from the primary source (like localStorage) before making updates, ensuring you're working with the latest information.
+
+    - using a function as a state variable to load initially the localstorage instead of a straight useEffect 

@@ -8,8 +8,16 @@ window.todoId = 1000;
 const TODO_KEY = "my_todos";
 
 export default function ToDo() {
-	const [todos, setTodos] = useState([]); // whole
+	const [todos, setTodos] = useState(loadInit); // whole
 	const [todoToAdd, setTodoToAdd] = useState("");
+
+	function loadInit(){
+		const todoStrings = localStorage.getItem(TODO_KEY)
+		const todoArr = JSON.parse(todoStrings)
+
+		return todoArr
+	}
+
 
 	function persistTodos(data) {
 		const strTodos = JSON.stringify(data);
