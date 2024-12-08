@@ -1,14 +1,16 @@
 import "./style.css";
 import React from "react";
 import Button from "../Button/Button";
+import { useRef } from "react";
 
 const ToDos = ({ todos = [], onDelete, onEdit, onEditSave, onEditCancel }) => {
 	return (
 		<div className="todo-list">
-			{todos.map((item) => {
+			{todos.map((item, index) => {
 				return (
 					<TodoItem
 						key={item.id}
+                        index={index}
 						item={item}
 						onDelete={onDelete}
 						onEdit={onEdit}
@@ -21,7 +23,7 @@ const ToDos = ({ todos = [], onDelete, onEdit, onEditSave, onEditCancel }) => {
 	);
 };
 
-function TodoItem({ item, onDelete, onEdit, onEditCancel, onEditSave }) {
+function TodoItem({ item, index, onDelete, onEdit, onEditCancel, onEditSave }) {
 	function handleDeleteTodo(id) {
 		return () => {
 			onDelete(id);
@@ -40,18 +42,23 @@ function TodoItem({ item, onDelete, onEdit, onEditCancel, onEditSave }) {
 		};
 	}
 
-	function handleEditSave(id) {
+	function handleEditSave(index, value) {
 		return () => {
-			onEditSave(id);
+			const inputValue = inputRef.current.value; // using ref to avoid re-rendering
+			onEditSave(id, inputValue);
+			inputRef.current.value = "";
 		};
 	}
+
+	const inputRef = useRef("");
 
 	if (item.editMode) {
 		return (
 			<div>
 				<input
 					type="text"
-					value={item.todo}
+					defaultValue={item.todo}
+					ref={inputRef}
 				/>
 				<Button
 					label="Save"

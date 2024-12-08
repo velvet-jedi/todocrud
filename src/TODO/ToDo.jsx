@@ -50,14 +50,11 @@ export default function ToDo() {
 		setTodos(editedTodos);
 	}
 
-	function handleEditSave(id) {
-		// const editedTodos = todos.map((todo) => {
-		// 	if (id === todo.id) {
-		// 		todo.editMode = false;
-		// 	}
-		// 	return { ...todo };
-		// });
-		// setTodos(editedTodos);
+	function handleEditSave(index, newValue) {
+		const newTodos = structuredClone(todos);
+		newTodos[index].todo = newValue;
+		newTodos[index].todo.editMode = false;
+		setTodos(newTodos);
 	}
 
 	return (

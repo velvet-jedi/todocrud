@@ -23,3 +23,5 @@
     -   [function references versus function calls](https://hashnode.com/draft/66a5e0c3229c6ced00fd4c0a)
 
     -   https://x.com/PranjalUncodes/status/1865736977544315366
+
+    -   using index from map instead (in the render component) of again and again iterating in the handler functions in the parent
