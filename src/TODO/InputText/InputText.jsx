@@ -8,6 +8,7 @@ export default function ({ value, onChange }) {
 	return (
 		<>
 			<input
+				className=""
 				type="text"
 				value={value}
 				onChange={handleChange}

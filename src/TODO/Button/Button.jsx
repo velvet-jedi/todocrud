@@ -1,6 +1,5 @@
-import "./style";
-
 import React from "react";
+import PropTypes from "prop-types";
 
 const Button = ({ label, onClick }) => {
 	return <button onClick={onClick}>{label}</button>;
