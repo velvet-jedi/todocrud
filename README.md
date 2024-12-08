@@ -5,6 +5,11 @@
     ![alt text](image.png)
 
     -   Next big step would be to determine what data must be kept within the parent
+
         -   All todos, input todo, filter info
 
--   Prop validation and default props
+    -   Prop validation and default props for button component
+    -   InputField bubbles up the change to the parent by using function (like onChange) value and onchange as props because the parent needs to maintain state
+
+    -   handleChange of the input comp, inside which I extract the value from the event object and passed it to the onChange callback so that any component usnig the inputText component that doesnt have to do the same again and again (ex-> If I use this input component 10 times in different places then I would have to 10 times write e.target.value) COMPONENT ABSTRACTION to reduce repetitive code and improve reusability.
+        Any parent component using InputText doesn't need to repeat the e.target.value extraction logic every time it uses this input.
