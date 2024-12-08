@@ -10,7 +10,7 @@ const ToDos = ({ todos = [], onDelete, onEdit, onEditSave, onEditCancel }) => {
 				return (
 					<TodoItem
 						key={item.id}
-                        index={index}
+						index={index}
 						item={item}
 						onDelete={onDelete}
 						onEdit={onEdit}
@@ -42,10 +42,10 @@ function TodoItem({ item, index, onDelete, onEdit, onEditCancel, onEditSave }) {
 		};
 	}
 
-	function handleEditSave(index, value) {
+	function handleEditSave() {
 		return () => {
 			const inputValue = inputRef.current.value; // using ref to avoid re-rendering
-			onEditSave(id, inputValue);
+			onEditSave(index, inputValue);
 			inputRef.current.value = "";
 		};
 	}

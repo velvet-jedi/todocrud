@@ -53,7 +53,7 @@ export default function ToDo() {
 	function handleEditSave(index, newValue) {
 		const newTodos = structuredClone(todos);
 		newTodos[index].todo = newValue;
-		newTodos[index].todo.editMode = false;
+		newTodos[index].editMode = false;
 		setTodos(newTodos);
 	}
 
