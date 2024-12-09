@@ -3,7 +3,7 @@ import React from "react";
 import Button from "../Button/Button";
 import { useRef } from "react";
 
-const ToDos = ({ todos = [], onDelete, onEdit, onEditSave, onEditCancel }) => {
+const ToDos = ({ todos = [], onDelete, onEdit, onEditSave, onEditCancel, onDone }) => {
 	return (
 		<div className="todo-list">
 			{todos.map((item, index) => {
@@ -16,6 +16,7 @@ const ToDos = ({ todos = [], onDelete, onEdit, onEditSave, onEditCancel }) => {
 						onEdit={onEdit}
 						onEditSave={onEditSave}
 						onEditCancel={onEditCancel}
+						onDone={onDone}
 					/>
 				);
 			})}
@@ -23,7 +24,7 @@ const ToDos = ({ todos = [], onDelete, onEdit, onEditSave, onEditCancel }) => {
 	);
 };
 
-function TodoItem({ item, index, onDelete, onEdit, onEditCancel, onEditSave }) {
+function TodoItem({ item, index, onDelete, onEdit, onEditCancel, onEditSave, onDone }) {
 	function handleDeleteTodo(id) {
 		return () => {
 			onDelete(id);
@@ -50,6 +51,12 @@ function TodoItem({ item, index, onDelete, onEdit, onEditCancel, onEditSave }) {
 		};
 	}
 
+	function handleDone(id) {
+		return () => {
+			onDone(id)
+		}
+	}
+
 	const inputRef = useRef("");
 
 	if (item.editMode) {
@@ -73,7 +80,7 @@ function TodoItem({ item, index, onDelete, onEdit, onEditCancel, onEditSave }) {
 	}
 
 	return (
-		<div>
+		<div data-done-todo={item.isDone}>
 			<span>{item.todo}</span>
 			<Button
 				label="Edit"
@@ -82,6 +89,10 @@ function TodoItem({ item, index, onDelete, onEdit, onEditCancel, onEditSave }) {
 			<Button
 				label="Delete"
 				onClick={handleDeleteTodo(item.id)}
+			></Button>
+			<Button
+				label="Done"
+				onClick={handleDone(item.id)}
 			></Button>
 		</div>
 	);

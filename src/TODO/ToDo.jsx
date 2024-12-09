@@ -19,6 +19,17 @@ export default function ToDo() {
 	}
 
 
+	function handleDone(id){
+		const newTodos = todos.map((todo) => {
+			if (id === todo.id) {
+				todo.isDone = true;
+			}
+			return { ...todo };
+		});
+		persistTodos(newTodos);
+	}
+
+
 	function persistTodos(data) {
 		const strTodos = JSON.stringify(data);
 		localStorage.setItem(TODO_KEY, strTodos);
@@ -36,6 +47,7 @@ export default function ToDo() {
 		newTodo.id = window.todoId++;
 		newTodo.todo = todoToAdd;
 		newTodo.editMode = false; // false editable by default
+		newTodo.isDone = false; 
 
 		setTodoToAdd("");
 		const newTodos = [newTodo, ...oldTodos];
@@ -87,6 +99,7 @@ export default function ToDo() {
 			{/* {todoToAdd} */}
 			<ToDos
 				todos={todos}
+				handleDone={handleDone}
 				onDelete={handleDeleteTodo}
 				onEdit={handleEditTodo}
 				onEditCancel={handleEditCancel}
