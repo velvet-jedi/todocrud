@@ -4,7 +4,7 @@ import Button from "./Button/Button";
 import { useState } from "react";
 import ToDos from "./Todos/ToDos";
 
-window.todoId = 1000;
+window.todoId = 1;
 const TODO_KEY = "my_todos";
 
 export default function ToDo() {
@@ -13,7 +13,7 @@ export default function ToDo() {
 
 	function loadInit() {
 		const todoStrings = localStorage.getItem(TODO_KEY);
-		const todoArr = JSON.parse(todoStrings);
+		const todoArr = JSON.parse(todoStrings ?? "[]");
 		window.todoId += todoArr.length;
 		return todoArr;
 	}
@@ -55,7 +55,7 @@ export default function ToDo() {
 
 	function handleDeleteTodo(id) {
 		const newTodos = todos.filter((todo) => todo.id !== id);
-
+		window.todoId -= 1;
 		persistTodos(newTodos);
 	}
 
