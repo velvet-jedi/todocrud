@@ -1,8 +1,16 @@
 import React from "react";
+import "../../Index.css";
 import PropTypes from "prop-types";
 
-const Button = ({ label, onClick }) => {
-	return <button onClick={onClick}>{label}</button>;
+const Button = ({ label, onClick, className }) => {
+	return (
+		<button
+			className={className}
+			onClick={onClick}
+		>
+			{label}
+		</button>
+	);
 };
 
 Button.propTypes = {

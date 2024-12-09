@@ -1,4 +1,4 @@
-import "../App.css";
+import "../Index.css";
 import InputText from "./InputText/InputText";
 import Button from "./Button/Button";
 import { useState } from "react";
@@ -11,15 +11,14 @@ export default function ToDo() {
 	const [todos, setTodos] = useState(loadInit); // whole
 	const [todoToAdd, setTodoToAdd] = useState("");
 
-	function loadInit(){
-		const todoStrings = localStorage.getItem(TODO_KEY)
-		const todoArr = JSON.parse(todoStrings)
+	function loadInit() {
+		const todoStrings = localStorage.getItem(TODO_KEY);
+		const todoArr = JSON.parse(todoStrings);
 		window.todoId += todoArr.length;
-		return todoArr
+		return todoArr;
 	}
 
-
-	function handleDone(id){
+	function handleDone(id) {
 		const newTodos = todos.map((todo) => {
 			if (id === todo.id) {
 				todo.isDone = true;
@@ -28,7 +27,6 @@ export default function ToDo() {
 		});
 		persistTodos(newTodos);
 	}
-
 
 	function persistTodos(data) {
 		const strTodos = JSON.stringify(data);
@@ -47,7 +45,7 @@ export default function ToDo() {
 		newTodo.id = window.todoId++;
 		newTodo.todo = todoToAdd;
 		newTodo.editMode = false; // false editable by default
-		newTodo.isDone = false; 
+		newTodo.isDone = false;
 
 		setTodoToAdd("");
 		const newTodos = [newTodo, ...oldTodos];

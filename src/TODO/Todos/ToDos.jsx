@@ -1,9 +1,16 @@
-import "./style.css";
+import "../../Index.css";
 import React from "react";
 import Button from "../Button/Button";
 import { useRef } from "react";
 
-const ToDos = ({ todos = [], onDelete, onEdit, onEditSave, onEditCancel, onDone }) => {
+const ToDos = ({
+	todos = [],
+	onDelete,
+	onEdit,
+	onEditSave,
+	onEditCancel,
+	onDone,
+}) => {
 	return (
 		<div className="todo-list">
 			{todos.map((item, index) => {
@@ -24,7 +31,15 @@ const ToDos = ({ todos = [], onDelete, onEdit, onEditSave, onEditCancel, onDone 
 	);
 };
 
-function TodoItem({ item, index, onDelete, onEdit, onEditCancel, onEditSave, onDone }) {
+function TodoItem({
+	item,
+	index,
+	onDelete,
+	onEdit,
+	onEditCancel,
+	onEditSave,
+	onDone,
+}) {
 	function handleDeleteTodo(id) {
 		return () => {
 			onDelete(id);
@@ -53,8 +68,8 @@ function TodoItem({ item, index, onDelete, onEdit, onEditCancel, onEditSave, onD
 
 	function handleDone(id) {
 		return () => {
-			onDone(id)
-		}
+			onDone(id);
+		};
 	}
 
 	const inputRef = useRef("");
@@ -69,9 +84,11 @@ function TodoItem({ item, index, onDelete, onEdit, onEditCancel, onEditSave, onD
 				/>
 				<Button
 					label="Save"
+					className="Done"
 					onClick={handleEditSave(item.id)}
 				></Button>
 				<Button
+					className="Delete"
 					label="Cancel"
 					onClick={handleEditCancel(item.id)}
 				></Button>
@@ -83,14 +100,17 @@ function TodoItem({ item, index, onDelete, onEdit, onEditCancel, onEditSave, onD
 		<div data-done-todo={item.isDone}>
 			<span>{item.todo}</span>
 			<Button
+				className="Edit"
 				label="Edit"
 				onClick={handleEditTodo(item.id)}
 			></Button>
 			<Button
+				className="Delete"
 				label="Delete"
 				onClick={handleDeleteTodo(item.id)}
 			></Button>
 			<Button
+				className="Done"
 				label="Done"
 				onClick={handleDone(item.id)}
 			></Button>

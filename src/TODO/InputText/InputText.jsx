@@ -1,4 +1,4 @@
-import "./style.css";
+import "../../Index.css";
 
 export default function ({ value, onChange }) {
 	function handleChange(e) {
