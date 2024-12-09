@@ -84,6 +84,17 @@ export default function ToDo() {
 		persistTodos(newTodos);
 	}
 
+	const pendingTodos = [],
+		doneTodos = [];
+	todos.forEach((t) => {
+		if (t.isDone) {
+			doneTodos.push(t);
+		} else {
+			pendingTodos.push(t);
+		}
+	});
+	const groupedTodos = [...pendingTodos, ...doneTodos];
+
 	return (
 		<>
 			<InputText
@@ -96,8 +107,8 @@ export default function ToDo() {
 			/>
 			{/* {todoToAdd} */}
 			<ToDos
-				todos={todos}
-				handleDone={handleDone}
+				todos={groupedTodos} // replace with grouped todos
+				onDone={handleDone}
 				onDelete={handleDeleteTodo}
 				onEdit={handleEditTodo}
 				onEditCancel={handleEditCancel}

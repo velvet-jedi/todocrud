@@ -120,6 +120,10 @@ button:hover {
 	margin-right: 10px;
 }
 
+div[data-done-todo="true"] {
+	background-color: green;
+}
+
 /* Responsive Adjustments */
 @media (max-width: 600px) {
 	#root {

@@ -37,3 +37,5 @@
     Always retrieve the most recent data directly from the primary source (like localStorage) before making updates, ensuring you're working with the latest information.
 
     -   using a function as a state variable to load initially the localstorage instead of a straight useEffect
+
+    - grouping together of done and pending
