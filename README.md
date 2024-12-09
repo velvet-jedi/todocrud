@@ -20,7 +20,7 @@
 
         -   structuredclone for deep copying
 
-        -   [function references versus function calls](https://hashnode.com/draft/66a5e0c3229c6ced00fd4c0a)
+        -   [function references versus function calls](https://geekymuch.hashnode.dev/understanding-function-call-vs-function-reference-in-react-a-deep-dive)
 
         -   https://x.com/PranjalUncodes/status/1865736977544315366
 
@@ -36,4 +36,4 @@
     The Solution
     Always retrieve the most recent data directly from the primary source (like localStorage) before making updates, ensuring you're working with the latest information.
 
-    - using a function as a state variable to load initially the localstorage instead of a straight useEffect 
+    -   using a function as a state variable to load initially the localstorage instead of a straight useEffect
